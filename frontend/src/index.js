@@ -27,9 +27,8 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
-      </ThemeProvider>,
-
-  </ApolloProvider>,
+      </ThemeProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
