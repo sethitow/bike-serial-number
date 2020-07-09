@@ -13,7 +13,10 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: '/graphql'
+  uri: '/graphql',
+  headers: {
+    authorization: `Bearer faketoken`,
+  }
 });
 
 const client = new ApolloClient({
