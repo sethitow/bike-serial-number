@@ -12,6 +12,7 @@ flask = "*"
 flask-graphql = "*"
 bidict = "*"
 graphene = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
