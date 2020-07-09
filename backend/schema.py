@@ -57,3 +57,7 @@ class Query(g.ObjectType):
 
 
 schema = g.Schema(query=Query)
+
+
+if __name__ == "__main__":
+    print(schema)
