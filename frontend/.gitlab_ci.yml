@@ -1,0 +1,42 @@
+stages:
+    - test
+    - build-backend
+  
+  unit-test:
+    stage: test
+    image: python:3.7-stretch
+    before_script:
+      - python3 -m pip install --no-cache-dir pipenv
+      - pipenv install --system --dev
+    script:
+      - nosetests
+  
+  build-master:
+    stage: build-backend
+    image: docker:latest
+    services:
+      - docker:dind
+    before_script:
+      - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    script:
+      - cd backend
+      - docker build --pull -t "$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG" .
+      - docker push "$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG"
+      - docker tag "$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG" "$CI_REGISTRY_IMAGE/backend:latest"
+      - docker push "$CI_REGISTRY_IMAGE/backend:latest"
+    only:
+      - master
+  
+  build:
+    stage: build-backend
+    image: docker:latest
+    services:
+      - docker:dind
+    before_script:
+      - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    script:
+      - cd backend
+      - docker build --pull -t "$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG" .
+      - docker push "$CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG"
+    except:
+      - master
