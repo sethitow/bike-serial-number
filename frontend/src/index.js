@@ -16,7 +16,7 @@ const link = new HttpLink({
   uri: 'http://127.0.0.1:5000/graphql'
 });
 
-const client: ApolloClient = new ApolloClient({
+const client = new ApolloClient({
   cache,
   link
 });
