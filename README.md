@@ -59,4 +59,4 @@ This application was created as a demonstration in a limited amount of time. The
 The server provided facilities to encode a new serial code given a set of bike facts. The UI does not currently expose this in any way. A form could be created to allow the user to create a new serial code.
 
 ### Authentication
-Authorization currently consists of a hardcoded bearer token that is checked by the server. This could be expanded to use a single sign-on provider.
+The Login button is currently not functional and authorization currently consists of a hardcoded bearer token that is checked by the server. This could be expanded to use a single sign-on provider.
