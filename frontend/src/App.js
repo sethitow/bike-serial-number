@@ -109,7 +109,7 @@ function App() {
                     <Typography variant="h6" className={classes.title}>
                         Serial Number Tool
                         </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="secondary" >Login</Button>
                 </Toolbar>
             </AppBar>
 
