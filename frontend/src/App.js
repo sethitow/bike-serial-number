@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Paper, TextField, Button, AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { Box, Container, Grid, Paper, TextField, Button, AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 import { gql } from "apollo-boost";
@@ -115,30 +115,36 @@ function App() {
 
             <Container maxWidth="md">
                 <Paper>
-                    <TextField
-                        id="input-serial-codes"
-                        label="Serial Codes"
-                        multiline
-                        rows={4}
-                        defaultValue="WBO19J101713, SB419J100413"
-                        fullWidth
-                    />
-                    <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                        <Button variant="contained" color="secondary" onClick={() => {
-                            var items = document.getElementById("input-serial-codes").value.replace(/\n/g, ",").replace(/\s+/g, '').split(",");
-                            items = items.filter(function (el) {
-                                return el !== "";
-                            });
-                            console.log(items)
-                            setState(items);
-                        }}>
-                            Submit
+                    <Box m={1} pt={1}>
+                        <TextField
+                            id="input-serial-codes"
+                            label="Serial Codes"
+                            multiline
+                            rows={4}
+                            defaultValue="WBO19J101713, SB419J100413"
+                            variant="outlined"
+                            fullWidth
+                        />
+                    </Box>
+                    <Box p={1}>
+                        <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                            <Button variant="contained" color="secondary" onClick={() => {
+                                var items = document.getElementById("input-serial-codes").value.replace(/\n/g, ",").replace(/\s+/g, '').split(",");
+                                items = items.filter(function (el) {
+                                    return el !== "";
+                                });
+                                console.log(items)
+                                setState(items);
+                            }}>
+                                Submit
                             </Button>
-                    </Grid>
+                        </Grid>
+                    </Box>
 
                 </Paper>
-
+                <Box mt={1}>
                     <ResultsTable serialCodes={state} />
+                </Box>
             </Container>
         </div>
     );
