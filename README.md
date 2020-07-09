@@ -36,7 +36,7 @@ input BikeInput {
 
 type Query {
   bikeInfo(serialCode: String!): Bike
-  bikeSerialCode(bike: BikeInput): String
+  bikeSerialCode(bike: BikeInput!): String
 }
 ```
 

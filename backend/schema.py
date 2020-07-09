@@ -28,7 +28,7 @@ class BikeInput(g.InputObjectType):
 class Query(g.ObjectType):
     bike_info = g.Field(Bike, serial_code=g.String(required=True))
 
-    bike_serial_code = g.Field(g.String, bike=BikeInput())
+    bike_serial_code = g.Field(g.String, bike=BikeInput(required=True))
 
     def resolve_bike_info(root, info, serial_code):
         LOG.info(type(serial_code))
