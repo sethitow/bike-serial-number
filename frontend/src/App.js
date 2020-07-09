@@ -36,22 +36,22 @@ function ResultRow(serialCode) {
     });
 
     if (loading) return null;
-    if (error){
+    if (error) {
         console.log(JSON.stringify())
     }
     if (error) {
         var error_string = "Error"
-        try{
+        try {
             error_string = String(error.graphQLErrors[0].message)
         }
-        catch {}
+        catch { }
         return (
-        <TableRow key={serialCode.serialCode}>
-            <TableCell component="th" scope="row">{serialCode.serialCode}</TableCell>
-            <TableCell component="th" scope="row" colSpan={6} ><center>{error_string}</center></TableCell>
-        </TableRow>
-    )
-        }
+            <TableRow key={serialCode.serialCode}>
+                <TableCell component="th" scope="row">{serialCode.serialCode}</TableCell>
+                <TableCell component="th" scope="row" colSpan={6} ><center>{error_string}</center></TableCell>
+            </TableRow>
+        )
+    }
 
     function pad(num, size) { return ('000000000' + num).substr(-size); }
 
@@ -100,8 +100,6 @@ function ResultsTable(serialCodes) {
 function App() {
     const classes = useStyles();
 
-
-
     const [state, setState] = useState(["WBO19J101713", "SB419J100413"]);
 
     return (
@@ -130,7 +128,7 @@ function App() {
                             var items = document.getElementById("input-serial-codes").value.replace(/\n/g, ",").replace(/\s+/g, '').split(",");
                             items = items.filter(function (el) {
                                 return el !== "";
-                              });
+                            });
                             console.log(items)
                             setState(items);
                         }}>
@@ -138,8 +136,9 @@ function App() {
                             </Button>
                     </Grid>
 
-                    <ResultsTable serialCodes={state} />
                 </Paper>
+
+                    <ResultsTable serialCodes={state} />
             </Container>
         </div>
     );
