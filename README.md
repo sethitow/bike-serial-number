@@ -42,8 +42,12 @@ type Query {
 
 Unit tests are written for the core logic that parses serial numbers. 
 
+Serial codes vary between 12 and 13 characters. The application parses the first 7 characters of the code, then assumes the remaining digits are the unique serial number. 
+
 ### Frontend
 The frontend is a React app using the Material-UI component library. It talks to the backend using the Apollo GraphQL client.
+
+Serial codes vary between 12 and 13 characters. The application pads all unique serial numbers to 6 digits.
 
 In production, the frontend is served by a stateless Nginx container. 
 
