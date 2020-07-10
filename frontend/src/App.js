@@ -30,6 +30,10 @@ query ($code: String!){
   }   
 `
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
 function ResultRow(serialCode) {
     const { loading, error, data } = useQuery(GET_BIKE_DATA, {
         variables: { code: serialCode.serialCode },
@@ -60,7 +64,7 @@ function ResultRow(serialCode) {
             <TableCell component="th" scope="row">{serialCode.serialCode}</TableCell>
             <TableCell>{data.bikeInfo.model}</TableCell>
             <TableCell align="right">{data.bikeInfo.modelYear}</TableCell>
-            <TableCell align="right">{data.bikeInfo.manufactureMonth}</TableCell>
+            <TableCell align="right">{monthNames[data.bikeInfo.manufactureMonth - 1]}</TableCell>
             <TableCell align="right">{data.bikeInfo.manufactureYear}</TableCell>
             <TableCell align="right">{data.bikeInfo.version}</TableCell>
             <TableCell align="right">{pad(data.bikeInfo.serialNumber, 6)}</TableCell>
